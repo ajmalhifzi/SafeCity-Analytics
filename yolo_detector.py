@@ -157,6 +157,16 @@ def run_traffic_detection():
         return
 
     # --------------------------------------------------------------------------
+    # PAPARAN ANTARA MUKA GRAFIK (GUI POP-UP WINDOW)
+    # --------------------------------------------------------------------------
+    if "--show" in sys.argv:
+        print("\n[INFO GUI] Membuka tetingkap antara muka visual grafik...")
+        print("           (Tekan sebarang kekunci pada tetingkap imej untuk menutupnya)")
+        cv2.imshow("SafeCity Analytics - YOLOv8 Vehicle Detection", annotated_image)
+        cv2.waitKey(0)
+        cv2.destroyAllWindows()
+
+    # --------------------------------------------------------------------------
     # KRITERIA 6.8: PENGESAHAN EKSEKUSI BERSIH TANPA RALAT
     # --------------------------------------------------------------------------
     print("\n" + "=" * 75)
