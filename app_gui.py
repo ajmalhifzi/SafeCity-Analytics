@@ -244,7 +244,7 @@ class SafeCityTrafficApp:
         self.lbl_stats = tk.Label(
             stats_frame,
             text="Model: YOLOv8n (Edge) | Status: Bersedia | Jumlah Objek: 0",
-            font=("Segoe UI", 9.5),
+            font=("Segoe UI", 10),
             fg="#1f2937",
             bg="#ffffff",
             anchor="w",
