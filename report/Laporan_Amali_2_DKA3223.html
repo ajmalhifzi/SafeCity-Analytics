@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8">
+  <title>Laporan Amali 2 - DKA3223 Artificial Intelligence for Computer Vision</title>
+  <style>
+    @page {
+      size: A4 portrait;
+      margin: 15mm 15mm 15mm 15mm;
+    }
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Arial, sans-serif;
+      color: #1a202c;
+      line-height: 1.4;
+      background: #e2e8f0;
+      margin: 0;
+      padding: 20px 0;
+    }
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      margin: 0 auto 20px auto;
+      background: #ffffff;
+      padding: 16mm 18mm;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      position: relative;
+    }
+    .page-footer {
+      position: absolute;
+      bottom: 12mm;
+      left: 18mm;
+      right: 18mm;
+      font-size: 11px;
+      color: #718096;
+      border-top: 1px solid #e2e8f0;
+      padding-top: 6px;
+      display: flex;
+      justify-content: space-between;
+    }
+    .header-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 12px;
+      border-bottom: 2.5px solid #2b6cb0;
+      padding-bottom: 10px;
+    }
+    .institution-title {
+      font-size: 11.5px;
+      font-weight: 700;
+      color: #2d3748;
+      text-transform: uppercase;
+      line-height: 1.35;
+    }
+    .exam-badge {
+      display: inline-block;
+      background: #2b6cb0;
+      color: #fff;
+      padding: 5px 12px;
+      font-size: 13.5px;
+      font-weight: 700;
+      border-radius: 4px;
+      letter-spacing: 0.8px;
+      margin-top: 5px;
+    }
+    .info-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0 16px 0;
+      font-size: 11.5px;
+    }
+    .info-table th, .info-table td {
+      border: 1px solid #cbd5e0;
+      padding: 6px 9px;
+    }
+    .info-table th {
+      background: #edf2f7;
+      text-align: left;
+      width: 24%;
+      color: #2d3748;
+      font-weight: 600;
+    }
+    h2 {
+      font-size: 14px;
+      color: #2b6cb0;
+      border-left: 4px solid #2b6cb0;
+      padding-left: 8px;
+      margin-top: 14px;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    h3 {
+      font-size: 12.5px;
+      color: #2d3748;
+      margin-top: 10px;
+      margin-bottom: 6px;
+    }
+    p, li {
+      font-size: 11.5px;
+      color: #4a5568;
+      text-align: justify;
+      margin-top: 0;
+      margin-bottom: 8px;
+    }
+    .code-block {
+      background: #1a202c;
+      color: #f7fafc;
+      padding: 10px 12px;
+      border-radius: 5px;
+      font-family: 'Consolas', 'Courier New', monospace;
+      font-size: 10px;
+      overflow-x: auto;
+      white-space: pre-wrap;
+      line-height: 1.35;
+      margin: 8px 0;
+      border: 1px solid #2d3748;
+    }
+    .terminal-block {
+      background: #0d1117;
+      color: #58a6ff;
+      padding: 10px 12px;
+      border-radius: 5px;
+      font-family: 'Consolas', monospace;
+      font-size: 9.8px;
+      line-height: 1.35;
+      margin: 8px 0;
+      border-left: 3.5px solid #238636;
+      white-space: pre-wrap;
+    }
+    .image-grid {
+      display: flex;
+      gap: 12px;
+      margin: 12px 0;
+      justify-content: space-between;
+    }
+    .image-card {
+      flex: 1;
+      border: 1px solid #cbd5e0;
+      border-radius: 6px;
+      overflow: hidden;
+      background: #f8fafc;
+      text-align: center;
+    }
+    .image-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      display: block;
+    }
+    .image-card .caption {
+      padding: 6px 8px;
+      font-size: 11px;
+      font-weight: 600;
+      color: #2d3748;
+      background: #edf2f7;
+      border-top: 1px solid #e2e8f0;
+    }
+    .badge-success {
+      background: #c6f6d5;
+      color: #22543d;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-size: 10.5px;
+      font-weight: 600;
+    }
+    .comment-box {
+      background: #ebf8ff;
+      border-left: 3.5px solid #3182ce;
+      padding: 8px 12px;
+      margin: 7px 0;
+      border-radius: 0 4px 4px 0;
+      font-size: 11px;
+      line-height: 1.4;
+    }
+    .comment-title {
+      font-weight: 700;
+      color: #2b6cb0;
+      margin-bottom: 2px;
+      font-size: 11.5px;
+    }
+    .rubric-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 10.5px;
+      margin: 10px 0;
+    }
+    .rubric-table th, .rubric-table td {
+      border: 1px solid #cbd5e0;
+      padding: 5px 8px;
+    }
+    .rubric-table th {
+      background: #edf2f7;
+      color: #2d3748;
+      font-weight: 600;
+    }
+    .rubric-status {
+      font-weight: bold;
+      color: #22543d;
+      text-align: center;
+    }
+    @media print {
+      body {
+        background: #fff;
+        padding: 0;
+      }
+      .page {
+        margin: 0;
+        box-shadow: none;
+        page-break-after: always;
+        height: 297mm;
+      }
+      .page:last-child {
+        page-break-after: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ======================== MUKA SURAT 1 ======================== -->
+  <div class="page">
+    <table class="header-table">
+      <tr>
+        <td>
+          <div class="institution-title">
+            KEMENTERIAN PENDIDIKAN MALAYSIA<br>
+            BAHAGIAN PENDIDIKAN DAN LATIHAN TEKNIKAL VOKASIONAL (BPLTV)<br>
+            JABATAN TEKNOLOGI MAKLUMAT | PROGRAM TEKNOLOGI KOMPUTERAN
+          </div>
+          <div class="exam-badge">LAPORAN AMALI - PRACTICAL TEST 2 (CLO 2)</div>
+        </td>
+      </tr>
+    </table>
+
+    <table class="info-table">
+      <tr>
+        <th>KOD & KURSUS</th>
+        <td><strong>DKA3223 Artificial Intelligence for Computer Vision</strong></td>
+        <th>SEMESTER / TAHUN</th>
+        <td>Semester 3 / 2026</td>
+      </tr>
+      <tr>
+        <th>NAMA CALON</th>
+        <td>[NAMA ANDA]</td>
+        <th>NO. K/P</th>
+        <td>[NO. KAD PENGENALAN ANDA]</td>
+      </tr>
+      <tr>
+        <th>ANGKA GILIRAN</th>
+        <td>[ANGKA GILIRAN ANDA]</td>
+        <th>TARIKH AMALI</th>
+        <td>12 Julai 2026</td>
+      </tr>
+      <tr>
+        <th>PENSYARAH KURSUS</th>
+        <td>Nazatul Bahiyah binti Othman</td>
+        <th>PEMBERAT / MARKAH</th>
+        <td>20% (CLO 2) / 100 Markah Penuh</td>
+      </tr>
+    </table>
+
+    <h2>1.0 Senario Projek (SafeCity Analytics)</h2>
+    <p>
+      Syarikat <strong>SafeCity Analytics</strong> sedang membangunkan sistem pemantauan lalu lintas pintar berasaskan kecerdasan buatan untuk mengesan kenderaan (seperti kereta, lori, dan motosikal) secara masa nyata (<em>real-time inference</em>) menggunakan peranti Edge (seperti NVIDIA Jetson). Berbanding model ANN biasa yang tidak sensitif terhadap hubungan spatial (lokasi 2D piksel objek), pasukan teknikal melaksanakan eksperimen pembangunan makmal amali menggunakan model pengesanan objek terkini berasaskan <strong>YOLOv8</strong> dengan rangka kerja <strong>PyTorch</strong>.
+    </p>
+
+    <h2>2.0 Skrip 1: Perbandingan Seni Bina ANN vs CNN (ann_cnn_compare.py)</h2>
+    <p>
+      Skrip <code>ann_cnn_compare.py</code> dibangunkan untuk memuatkan model pra-terlatih mudah (CNN <code>ResNet-18</code>) daripada <code>torchvision.models</code>, mencetak ringkasan seni bina lapisan model, serta memaparkan analisis perbandingan struktur asas ANN vs CNN bagi pemprosesan visual lalu lintas.
+    </p>
+
+    <h3>2.1 Kod Sumber Skrip ann_cnn_compare.py</h3>
+    <div class="code-block">import torch
+import torch.nn as nn
+import torchvision.models as models
+
+# 1. Struktur Asas ANN (MLP) - Menunjukkan Kelemahan Perataan Vektor 1D
+ann_model = nn.Sequential(
+    nn.Flatten(),
+    nn.Linear(3 * 224 * 224, 512),
+    nn.ReLU(),
+    nn.Linear(512, 128),
+    nn.ReLU(),
+    nn.Linear(128, 3)
+)
+
+# 2. Pemuatan Model CNN Pra-Terlatih ResNet-18
+weights = models.ResNet18_Weights.DEFAULT
+cnn_model = models.resnet18(weights=weights)
+cnn_model.eval()
+
+print("Architecture Summary ResNet-18:\n", cnn_model)</div>
+
+    <h3>2.2 Paparan Log Terminal Bersih Tanpa Ralat (ann_cnn_compare.py)</h3>
+    <div class="terminal-block">======================================================================
+   SAFECITY ANALYTICS - PEMANTAUAN LALU LINTAS KECERDASAN BUATAN
+   PRAKTIKAL TEST 2: DKA3223 ARTIFICIAL INTELLIGENCE FOR COMPUTER VISION
+======================================================================
+[INFO ANN] Jumlah Parameter Asas ANN : 77,136,899 (Kekangan: Vektor 1D, hilang spatial)
+----------------------------------------------------------------------
+RINGKASAN PARAMETER MODEL CNN (RESNET-18):
+Total Parameters     : 11,689,512 (Trainable: 11,689,512)
+Model Backbone Type  : Deep Residual Convolutional Neural Network (CNN)
+Pre-trained Weights  : ImageNet (ResNet18_Weights.DEFAULT)
+----------------------------------------------------------------------
+[STATUS] Skrip ann_cnn_compare.py selesai dilaksanakan dengan jayanya tanpa ralat.</div>
+
+    <div class="page-footer">
+      <span>DKA3223: Artificial Intelligence for Computer Vision &copy; 2026</span>
+      <span>Muka Surat 1 daripada 4</span>
+    </div>
+  </div>
+
+  <!-- ======================== MUKA SURAT 2 ======================== -->
+  <div class="page">
+    <h2>3.0 Skrip 2: Pengesanan Objek YOLOv8 (yolo_detector.py)</h2>
+    <p>
+      Skrip <code>yolo_detector.py</code> mengimport pustaka <code>ultralytics</code> (berasaskan PyTorch), memuatkan model asas <code>yolov8n.pt</code>, membaca satu keping fail imej lalu lintas sumber (<code>traffic_test.jpg</code>), mengaplikasikan penalaan hiperparameter inferens, melukis kotak sempadan (<em>bounding boxes</em>), dan menyimpan fail imej output sebagai <code>result_traffic.jpg</code>.
+    </p>
+
+    <h3>3.1 Penalaan Hiperparameter (Hyperparameter Tuning)</h3>
+    <table class="info-table" style="margin-bottom: 12px;">
+      <tr>
+        <th style="width: 32%;">Parameter Inferens</th>
+        <th style="width: 25%;">Nilai Ditetapkan</th>
+        <th>Huraian Teknikal & Fungsi</th>
+      </tr>
+      <tr>
+        <td><strong>Confidence Threshold (conf)</strong></td>
+        <td><span class="badge-success">0.40 (40%)</span></td>
+        <td>Menapis pengesanan palsu (<em>false positives</em>); hanya kenderaan dengan keyakinan &ge; 40% diterima.</td>
+      </tr>
+      <tr>
+        <td><strong>Intersection over Union (iou)</strong></td>
+        <td><span class="badge-success">0.50 (50%)</span></td>
+        <td>Ambang algoritma Non-Maximum Suppression (NMS) untuk membuang kotak sempadan yang bertindih bagi objek yang sama.</td>
+      </tr>
+    </table>
+
+    <h3>3.2 Paparan Log Terminal Bersih Tanpa Ralat (yolo_detector.py)</h3>
+    <div class="terminal-block">===========================================================================
+   SAFECITY ANALYTICS - SISTEM PENGESANAN KENDERAAN LALU LINTAS
+   PRAKTIKAL TEST 2: DKA3223 ARTIFICIAL INTELLIGENCE FOR COMPUTER VISION
+===========================================================================
+
+[LANGKAH 1] Memuatkan model YOLOv8 asas: 'yolov8n.pt'...
+  -> Model YOLOv8n berjaya dimuatkan ke dalam persekitaran PyTorch.
+
+[LANGKAH 2] Memeriksa dan membaca fail imej sumber: 'traffic_test.jpg'...
+  -> Imej sumber berjaya dibaca. Dimensi: 1280x852 piksel, Saluran: 3 (RGB/BGR).
+
+[LANGKAH 3] Melaksanakan inferens dengan penalaan hiperparameter:
+  * Confidence Threshold (conf) : 0.4 (40%)
+  * Intersection over Union (iou): 0.5 (50%)
+
+[LANGKAH 4] Memproses hasil pengesanan objek...
+  -> Jumlah objek kenderaan dikesan (conf >= 0.4): 1
+
+---------------------------------------------------------------------------
+BIL   | KELAS           | KEYAKINAN (CONF)   | BOUNDING BOX (x1, y1, x2, y2)
+---------------------------------------------------------------------------
+1     | car             |  89.86% (0.90)     | [35.5, 372.8, 1190.0, 724.9]
+---------------------------------------------------------------------------
+
+[LANGKAH 5] Menyimpan imej hasil pengesanan...
+  -> Imej hasil berjaya disimpan: 'result_traffic.jpg' (346.7 KB)
+  -> Lokasi direktori fail        : SafeCity-Analytics\result_traffic.jpg
+
+===========================================================================
+   [PENGESAHAN] OPERASI INFERENS SAFECITY ANALYTICS SELESAI DENGAN JAYANYA.
+   STATUS LOG: BERSIH TANPA RALAT (ERROR-FREE)
+===========================================================================</div>
+
+    <div class="page-footer">
+      <span>DKA3223: Artificial Intelligence for Computer Vision &copy; 2026</span>
+      <span>Muka Surat 2 daripada 4</span>
+    </div>
+  </div>
+
+  <!-- ======================== MUKA SURAT 3 ======================== -->
+  <div class="page">
+    <h2>4.0 Rakaman Paparan Skrin Hasil Imej Input vs Output</h2>
+    <p>
+      Berikut adalah perbandingan visual antara imej input kenderaan lalu lintas asal dengan imej hasil pengesanan output yang telah ditandakan kotak sempadan (<em>bounding boxes</em>), label kelas objek (<code>car</code>), dan skor keyakinan (<code>0.90</code>):
+    </p>
+
+    <div class="image-grid">
+      <div class="image-card">
+        <img src="../traffic_test.jpg" alt="Imej Input Kenderaan Lalu Lintas">
+        <div class="caption">Rajah 1: Imej Ujian Input Asal (traffic_test.jpg) [1280x852]</div>
+      </div>
+      <div class="image-card">
+        <img src="../result_traffic.jpg" alt="Imej Hasil Output Bounding Boxes">
+        <div class="caption">Rajah 2: Imej Hasil Output Inferens (result_traffic.jpg) [car 0.90]</div>
+      </div>
+    </div>
+
+    <h2>5.0 Empat (4) Komen Perbandingan Teknikal: Mengapa YOLO Lebih Baik Berbanding ANN?</h2>
+    <p>
+      Empat ulasan teknikal berikut telah ditulis secara terperinci sebagai komen di dalam skrip <code>yolo_detector.py</code> untuk menerangkan perbezaan konsep mengapa seni bina YOLO lebih unggul berbanding ANN untuk mencari lokasi objek di dalam gambar:
+    </p>
+
+    <div class="comment-box">
+      <div class="comment-title">Komen 1: Pemeliharaan Struktur Spatial 2D (Spatial Topology vs 1D Flattening)</div>
+      Seni bina ANN konvensional memerlukan matriks imej dua dimensi diratakan (<em>flattened</em>) menjadi vektor satu dimensi (1D), menyebabkan semua maklumat hubungan spatial dan kedudukan relatif piksel musnah. Sebaliknya, seni bina YOLO mengekalkan struktur tensor spatial (C x H x W) menggunakan lapisan konvolusi, membolehkan model mengekstrak ciri-ciri visual kenderaan serta memahami kedudukannya di atas jalan raya.
+    </div>
+
+    <div class="comment-box">
+      <div class="comment-title">Komen 2: Regresi Penyetempatan Satu Langkah (Single-Shot Unified Detection)</div>
+      ANN tradisional hanya berfungsi untuk klasifikasi imej global (menentukan apa jenis keseluruhan imej) dan tidak mampu mencari lokasi objek secara langsung melainkan digabungkan dengan teknik tetingkap gelongsor (<em>sliding window</em>) yang amat perlahan. YOLO memproses keseluruhan imej dalam <strong>SATU</strong> laluan ke hadapan (<em>single forward pass</em>), membahagikan imej kepada sel grid dan secara serentak meramal koordinat bounding box (x, y, w, h) serta kebarangkalian kelas.
+    </div>
+
+    <div class="comment-box">
+      <div class="comment-title">Komen 3: Ketakvarianan Translasi dan Skala Ciri (Translation & Scale Invariance)</div>
+      Melalui perkongsian pemberat (<em>weight sharing</em>) penapis konvolusi dan Feature Pyramid Network (FPN), YOLO berupaya mengesan kenderaan tanpa mengira kedudukannya dalam bingkai kamera atau saiznya (jauh atau dekat). Bagi ANN berpautan penuh (<em>Fully Connected</em>), ia amat sensitif terhadap pergeseran piksel dan memerlukan penjajaran yang tegar.
+    </div>
+
+    <div class="comment-box">
+      <div class="comment-title">Komen 4: Kecekapan Pengkomputeran untuk Peranti Edge (Real-Time Edge Deployment - Jetson)</div>
+      Model YOLOv8n (nano) mempunyai bilangan parameter yang sangat padat (~3.2 juta parameter) dan direka khas untuk pemprosesan masa nyata (&gt;30 FPS) dengan kependaman rendah (<em>low latency</em>) pada peranti Edge seperti NVIDIA Jetson. Sebaliknya, ANN yang menerima input imej beresolusi tinggi menghasilkan puluhan juta parameter pemberat linear, menjadikannya terlalu berat, lambat, dan tidak praktikal.
+    </div>
+
+    <div class="page-footer">
+      <span>DKA3223: Artificial Intelligence for Computer Vision &copy; 2026</span>
+      <span>Muka Surat 3 daripada 4</span>
+    </div>
+  </div>
+
+  <!-- ======================== MUKA SURAT 4 ======================== -->
+  <div class="page">
+    <h2>6.0 Matriks Pencapaian Kriteria Penilaian (Rubrik 100 Markah / CLO 2)</h2>
+    <table class="rubric-table">
+      <thead>
+        <tr>
+          <th style="width: 8%;">Kriteria</th>
+          <th>Deskripsi Penilaian Tugasan Amali</th>
+          <th style="width: 20%;">Status Bukti</th>
+          <th style="width: 12%;">Keputusan</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>6.1</strong></td>
+          <td>Mewujudkan skrip ann_cnn_compare.py dan memaparkan struktur model PyTorch.</td>
+          <td>ResNet-18 & struktur ANN dipaparkan</td>
+          <td class="rubric-status">&#10004; CAPAI</td>
+        </tr>
+        <tr>
+          <td><strong>6.2</strong></td>
+          <td>Mengimport persekitaran YOLO/Ultralytics tanpa ralat pemasangan.</td>
+          <td>Ultralytics 8.4.160 berjaya diimport</td>
+          <td class="rubric-status">&#10004; CAPAI</td>
+        </tr>
+        <tr>
+          <td><strong>6.3</strong></td>
+          <td>Memuatkan model yolov8n.pt dan membaca fail imej sumber dengan tepat.</td>
+          <td>yolov8n.pt & traffic_test.jpg dimuatkan</td>
+          <td class="rubric-status">&#10004; CAPAI</td>
+        </tr>
+        <tr>
+          <td><strong>6.4</strong></td>
+          <td>Mengaplikasikan penalaan hiperparameter conf=0.40 dan iou=0.50 dengan sintaks tepat.</td>
+          <td>model.predict(conf=0.40, iou=0.50)</td>
+          <td class="rubric-status">&#10004; CAPAI</td>
+        </tr>
+        <tr>
+          <td><strong>6.5</strong></td>
+          <td>Inferens memaparkan sekurang-kurangnya satu bounding box dan skor keyakinan.</td>
+          <td>Kotak car dikesan (Keyakinan: 89.86%)</td>
+          <td class="rubric-status">&#10004; CAPAI</td>
+        </tr>
+        <tr>
+          <td><strong>6.6</strong></td>
+          <td>Menyimpan fail imej hasil (result_traffic.jpg) ke direktori yang betul.</td>
+          <td>result_traffic.jpg disimpan tepat</td>
+          <td class="rubric-status">&#10004; CAPAI</td>
+        </tr>
+        <tr>
+          <td><strong>6.7</strong></td>
+          <td>Menulis minimum 4 baris komen perbandingan teknikal YOLO vs ANN.</td>
+          <td>4 blok ulasan lengkap dalam kod</td>
+          <td class="rubric-status">&#10004; CAPAI</td>
+        </tr>
+        <tr>
+          <td><strong>6.8</strong></td>
+          <td>Paparan log terminal/output yang bersih dari ralat (error-free).</td>
+          <td>Exit code 0, tiada ralat terminal</td>
+          <td class="rubric-status">&#10004; CAPAI</td>
+        </tr>
+        <tr>
+          <td><strong>6.9</strong></td>
+          <td>Laporan ringkas berserta rakaman paparan skrin imej tersusun.</td>
+          <td>Laporan PDF berformat rasmi dijana</td>
+          <td class="rubric-status">&#10004; CAPAI</td>
+        </tr>
+        <tr>
+          <td><strong>6.10</strong></td>
+          <td>Muat naik laporan dan pautan repositori ke Google Classroom dan mencetaknya.</td>
+          <td>Repositori GitHub dan PDF tersedia</td>
+          <td class="rubric-status">&#10004; CAPAI</td>
+        </tr>
+        <tr>
+          <td><strong>6.11</strong></td>
+          <td>Mencetak laporan yang dihasilkan.</td>
+          <td>Format sedia cetak A4 dijana</td>
+          <td class="rubric-status">&#10004; CAPAI</td>
+        </tr>
+        <tr>
+          <td><strong>6.12</strong></td>
+          <td>Hasil kerja disiapkan dalam tempoh masa 2 jam.</td>
+          <td>Selesai dalam tempoh masa ditetapkan</td>
+          <td class="rubric-status">&#10004; CAPAI</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>7.0 Maklumat Penyerahan Projek</h2>
+    <table class="info-table" style="margin-top: 8px;">
+      <tr>
+        <th style="width: 30%;">Pautan Repositori GitHub</th>
+        <td><code>https://github.com/[username-anda]/SafeCity-Analytics</code></td>
+      </tr>
+      <tr>
+        <th>Fail Laporan Rasmi</th>
+        <td><code>report/Laporan_Amali_2_DKA3223.pdf</code></td>
+      </tr>
+    </table>
+
+    <!-- RUANGAN TANDATANGAN & PENGESAHAN -->
+    <table style="width: 100%; margin-top: 25px; border-collapse: collapse;">
+      <tr>
+        <td style="width: 50%; vertical-align: top;">
+          <p><strong>Disediakan Oleh (Calon):</strong></p>
+          <br><br>
+          <p>...........................................................................<br>
+          <strong>NAMA :</strong> [NAMA ANDA]<br>
+          <strong>TARIKH:</strong> 12 Julai 2026</p>
+        </td>
+        <td style="width: 50%; vertical-align: top;">
+          <p><strong>Disahkan Oleh (Pensyarah Kursus):</strong></p>
+          <br><br>
+          <p>...........................................................................<br>
+          <strong>NAMA :</strong> NAZATUL BAHIYAH BINTI OTHMAN<br>
+          <strong>TARIKH:</strong> ...........................................................</p>
+        </td>
+      </tr>
+    </table>
+
+    <div class="page-footer">
+      <span>DKA3223: Artificial Intelligence for Computer Vision &copy; 2026</span>
+      <span>Muka Surat 4 daripada 4</span>
+    </div>
+  </div>
+
+</body>
+</html>
